@@ -1,11 +1,22 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
+import CartIcon from '../../components/card-icon/card-icon.component';
+import CardDropdown from '../../components/card-dropdown/card-dropdown.component';
+
+import { UserContext } from '../../contexts/user.context';
+
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
+
+
+import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 import './navigation.styles.scss';
 
 const Navigation = () => {
+    const { currentUser } = useContext(UserContext);
+
+
     return(
         <Fragment>
             <div className='navigation'>
@@ -17,10 +28,19 @@ const Navigation = () => {
                     <Link className='nav-link' to='/shop' >
                         Shop
                     </Link>
-                    <Link className='nav-link' to='/auth' >
-                        Sign In
-                    </Link>
+
+                    {currentUser ? 
+                        <span className='nav-link' onClick={signOutUser}>
+                            {' '}Sign out{' '}
+                        </span>
+                        : 
+                        <Link className='nav-link' to='/auth' >
+                            Sign In
+                        </Link>
+                    }
+                    <CartIcon/>
                 </div>
+                <CardDropdown />
             </div>
             <Outlet />
         </Fragment>
