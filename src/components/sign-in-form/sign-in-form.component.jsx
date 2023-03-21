@@ -4,7 +4,9 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
 
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+//import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+
+import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import './sign-in-form.styles.scss';
 
@@ -33,6 +35,7 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
+            // eslint-disable-next-line no-unused-vars
             const { user } = await signInAuthUserWithEmailAndPassword (
                 email, 
                 password
