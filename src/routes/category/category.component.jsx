@@ -1,6 +1,6 @@
-import './category.styles.scss';
+import { CategoryContainer, CategoryTitle } from './category.styles';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, Fragment } from 'react';
 import { useParams } from 'react-router';
 
 import { CategoriesContext } from '../../contexts/categories.context';
@@ -17,13 +17,16 @@ const Category = () => {
     }, [category, categoriesMap])
 
     return(
-        <div className='category-container'>
-            {products &&
-                products.map((product)=> <ProductCard key={product.id} product={product} />)
-            }
-        </div>
+        <Fragment>
+            <CategoryTitle>{category}</CategoryTitle>
+            
+            <CategoryContainer>
+                {products &&
+                    products.map((product)=> <ProductCard key={product.id} product={product} />)
+                }
+            </CategoryContainer>
+        </Fragment>
     );
-
 }
 
 export default Category;
