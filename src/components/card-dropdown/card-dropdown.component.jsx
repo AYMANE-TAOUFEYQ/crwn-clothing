@@ -10,7 +10,7 @@ import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import CartItem from '../cart-item/cart-item.component';
 
 //styles
-import { CardDropdownContainer, CartItems } from './card-dropdown.styles';
+import { CardDropdownContainer, CartItems, EmptyMessage } from './card-dropdown.styles';
 
 
 
@@ -25,9 +25,12 @@ const CardDropdown = () => {
     return(
         <CardDropdownContainer>
             <CartItems>
-                {cartItems.map(item => (
+                {
+                    cartItems.length ? (cartItems.map(item => (
                     <CartItem key={item.id} cartItem={item}/>
-                ))}
+                ))) : (
+                    <EmptyMessage>Your cart is empty</EmptyMessage>
+                )}
             </CartItems>
             <Button style={{marginTop: 'auto',fontSize: '12px' }} buttonType={BUTTON_TYPE_CLASSES.base} onClick={goToCheckoutHandler}>Go TO CHECKOUT</Button>
         </CardDropdownContainer>  
