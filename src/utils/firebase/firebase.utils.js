@@ -18,6 +18,7 @@ import {
     writeBatch,
     query,
     getDocs,
+    // eslint-disable-next-line no-unused-vars
     QuerySnapshot
 } from "firebase/firestore";
 
@@ -32,6 +33,7 @@ const firebaseConfig = {
 };
 
 
+// eslint-disable-next-line no-unused-vars
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
